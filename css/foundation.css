@@ -34,7 +34,9 @@ pre {
   font-size: 1em; }
 
 a {
-  background-color: transparent; }
+  background-color: transparent; 
+  color: black !important;
+}
 
 abbr[title] {
   border-bottom: none;
