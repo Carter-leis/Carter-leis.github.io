@@ -1,0 +1,13 @@
+/**
+ * 
+ * @author carterleising
+ *
+ */
+public interface Boardable {
+
+	/**
+	 * 
+	 * @return returns the visibility of the boarable object
+	 */
+	public boolean isVisible();
+}

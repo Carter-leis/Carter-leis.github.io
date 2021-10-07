@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Driver {
+	
+	private Scanner input = new Scanner(System.in);
+	public void main(String[] args) {
+		int height;
+		int width;
+		System.out.println("enter the board height");
+		height = input.nextInt();
+		System.out.println("enter the board width");
+		width = input.nextInt();
+		Board bd = new Board(height, width);
+		Stylus stylus = new Stylus(bd);
+		int index = 0;
+		while(index == 0)
+		{
+			stylus.move();
+		}
+
+	}
+
+}

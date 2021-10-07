@@ -1,0 +1,297 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+/**
+ * Board
+ * @author carterleising
+ * creates a board of cells. the cells change based on if the stlyus has gone through it. 
+ * reads the movemnts given to it and moves the stylus to the new position
+ * also prints out the board
+ */
+public class Board {
+	/**   an arraylist of an arraylist that stores each cell for the board    */
+	private ArrayList<ArrayList<Cell>> board = new ArrayList<ArrayList<Cell>>();
+	/**   the height of the board    */
+	private int height;
+	/**   the width of the board    */
+	private int width;
+	/**   a hashmap that stores the location of the stylus    */
+	private HashMap<Boardable, Cell> elementPlace = new HashMap<Boardable, Cell>(); 
+	
+	private boolean hugged;
+	
+	/**
+	 * creates the board and sets the position of the stylus
+	 * throws illegalArguementException if height and width not in the range of 1 - 100
+	 * @param height height of board
+	 * @param width width of board
+	 */
+	public Board(int height, int width)
+	{
+		if(height <= 100 && height >= 1 && width <= 100 && width >= 1)
+		{
+			this.height = height;
+			this.width = width;
+			for(int indexHeight = 0; indexHeight < height; indexHeight++)
+			{
+				ArrayList<Cell> temp = new ArrayList<Cell>();
+				for(int indexWidth = 0; indexWidth < width; indexWidth++)
+				{
+					temp.add(new Cell(indexHeight, indexWidth));
+				}
+				board.add(temp);	
+			}
+		}else
+		{
+			throw new IllegalArgumentException("the height or width is not in the bounds of 1 - 100");
+		}
+	}
+	
+	/**
+	 * takes in the direction that is being called and moves the stylus in that direction
+	 * doesnt allow for the stylus to go out of the ranges of the hieght and width
+	 * prints out the board after every move
+	 * @param dir movement the user wants the stylus to go
+	 * @param elem the stylus
+	 * @return true if the movement is possible or false if not
+	 */
+	public boolean move(Direction dir, Boardable elem)
+	{
+		if(elementPlace.get(elem).row < height && elementPlace.get(elem).col < width)
+		{
+			int placeRow = elementPlace.get(elem).row;
+			int placeCol = elementPlace.get(elem).col;
+				if(dir.equals(Direction.DOWN))
+				{
+					if(placeRow + 1 < height && placeCol < width)
+					{
+						removeElement(elem);
+						board.get(placeRow).get(placeCol).removeElement(elem);
+						placeElement(elem, placeRow + 1, placeCol);
+						return true;
+					}
+				}if(dir.equals(Direction.DOWN_LEFT))
+				{
+					if(placeRow + 1 < height && placeCol - 1 >= 0)
+					{
+						removeElement(elem);
+						board.get(placeRow).get(placeCol).removeElement(elem);
+						placeElement(elem, placeRow +1, placeCol -1);
+						
+						return true;
+					}
+				}if(dir.equals(Direction.DOWN_RIGHT))
+				{
+					if(placeRow + 1 < height && placeCol + 1 < width)
+					{
+						removeElement(elem);
+						board.get(placeRow).get(placeCol).removeElement(elem);
+						placeElement(elem, placeRow +1, placeCol +1);
+						return true;
+					}
+				}if(dir.equals(Direction.LEFT))
+				{
+					if(placeRow < height && placeCol - 1 >= 0)
+					{
+						removeElement(elem);
+						board.get(placeRow).get(placeCol).removeElement(elem);
+						placeElement(elem, placeRow, placeCol -1);
+						return true;
+					}
+				}if(dir.equals(Direction.RIGHT))
+				{
+					if(placeRow < height && placeCol + 1 < width)
+					{
+						removeElement(elem);
+						board.get(placeRow).get(placeCol).removeElement(elem);
+						placeElement(elem, placeRow, placeCol +1);
+						return true;
+					}
+				}if(dir.equals(Direction.UP))
+				{     
+					if(placeRow - 1 >= 0  && placeCol < width)
+					{
+						removeElement(elem);
+						board.get(placeRow).get(placeCol).removeElement(elem);
+						placeElement(elem, placeRow -1, placeCol);
+						return true;
+					}
+				}if(dir.equals(Direction.UP_LEFT))
+				{
+					if(placeRow - 1 >= 0 && placeCol - 1 >= 0)
+					{
+						removeElement(elem);
+						board.get(placeRow).get(placeCol).removeElement(elem);
+						placeElement(elem, placeRow -1, placeCol -1);
+						return true;
+					}
+				}if(dir.equals(Direction.UP_RIGHT))
+				{
+					if(placeRow - 1 >= 0 && placeCol + 1 < width)
+					{
+						removeElement(elem);
+						board.get(placeRow).get(placeCol).removeElement(elem);
+						placeElement(elem, placeRow -1, placeCol +1);
+						return true;
+					}
+				}
+		}
+		printBoard();
+		return false;
+	}
+	
+	public boolean removeElement(Boardable elem)
+	{
+		if(elementPlace.containsKey(elem))
+		{
+			elementPlace.remove(elem);
+			return true;
+		}
+		return false;
+	}
+	
+	public int getRow(Boardable elem)
+	{
+		return elementPlace.get(elem).row;
+	}
+	
+	public int getColumn(Boardable elem)
+	{
+		return elementPlace.get(elem).col;
+	}
+	
+	public void setHugged(boolean hugged)
+	{
+		this.hugged = hugged;
+	}
+	
+	public boolean beenHugged()
+	{
+		if(this.hugged)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * places the stylus when the board is created
+	 * @param elem the stylus
+	 * @param row the row the user wants to put the stylus
+	 * @param col the col the user wants to put the stylus
+	 * @return
+	 */
+	public boolean placeElement(Boardable elem, int row, int col)
+	{
+		if(row < height && row >= 0 && col >= 0 && col < width)
+		{
+			board.get(row).get(col).addElement(elem);
+			elementPlace.put(elem, board.get(row).get(col));
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * prints the board
+	 */
+	public void printBoard()
+	{
+		for(int firstIndex = 0; firstIndex < this.height; firstIndex++)
+		{
+			for(int secondIndex = 0; secondIndex < this.width; secondIndex++)
+			{
+				System.out.print(board.get(firstIndex).get(secondIndex));
+			}
+			System.out.println("");
+		}
+		
+	}
+	
+	/**
+	 * Cell
+	 * @author carterleising
+	 * each individual # on the board is created in cell. allows for a stylus to be added to the cell
+	 * once the cell doesnt have the stylus, it will be a blank space
+	 */
+	private class Cell {
+		/**  the row the cell is in     */
+		private int row;
+		/**  the column the cell is in    */
+		private int col;
+		/**  false if cell is a pound or true once stylus gets set in elements    */
+		private boolean isVisible;
+		/**   elements is an arraylist of boardable objects that are in the cell    */
+		private ArrayList<Boardable> elements = new ArrayList<Boardable>();
+		
+		/**
+		 * sets row and column
+		 * and sets isVisible to false
+		 * @param row the row the cell is in
+		 * @param column the column the cell is in
+		 */
+		public Cell(int row, int column)
+		{
+			this.row = row;
+			this.col = column;
+			this.isVisible = false;
+		}
+		
+		/**
+		 * adds a boardable object to the elements arraylist
+		 * sets isVisible to true 
+		 * @param elem boardable object
+		 */
+		public void addElement(Boardable elem)
+		{
+			elements.add(elem);
+			this.isVisible = true;
+		}
+		/**
+		 * removes the boardable object from the elements arraylist
+		 * @param elem boardable object
+		 * @return true if object is removed otherwise returns false
+		 */
+		public boolean removeElement(Boardable elem)
+		{
+			if(elements.size() > 0)
+			{
+				elements.remove(0);
+				return true;
+			}
+			return false;
+		}
+		
+		/**
+		 *  returns an empty space if isVisible is true and elements size is 0
+		 *  or returns a # if isVisible is false
+		 *  or returns the boarable element
+		 */
+		public String toString()
+		{
+			if(this.isVisible && elements.size() == 0)
+			{
+				return " ";
+			}else if(!this.isVisible)
+			{
+				return "#";
+			}else
+			{
+				return elements.get(0).toString();
+			}
+
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+//board.get(placeRow -1).get(placeCol +1).addElement(elem);
+//elementPlace.put(elem, new Cell(placeRow - 1, placeCol + 1));

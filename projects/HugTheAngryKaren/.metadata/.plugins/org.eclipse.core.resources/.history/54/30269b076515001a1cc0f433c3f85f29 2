@@ -1,0 +1,18 @@
+/**
+ * 
+ * @author carterleising
+ * the directions of where the stylus can move
+ */
+public enum Direction {
+	
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+	UP_LEFT,
+	UP_RIGHT,
+	DOWN_LEFT,
+	DOWN_RIGHT;
+	
+	
+}

@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class Player extends Mobile{
+
+	private Scanner input = new Scanner(System.in);
+	private long delayTime;
+	
+	public Player(Board board) {
+		super(board);
+	}
+	
+	protected void move()
+	{
+		String userIn;
+		userIn = input.next();
+		if(userIn.compareTo("q") == 0)
+		{
+			board.move(Direction.UP_LEFT, this);
+		}if(userIn.compareTo("w") == 0)
+		{
+			board.move(Direction.UP, this);
+		}if(userIn.compareTo("e") == 0)
+		{
+			board.move(Direction.UP_RIGHT, this);
+		}if(userIn.compareTo("a") == 0)
+		{
+			board.move(Direction.LEFT, this);
+		}if(userIn.compareTo("d") == 0)
+		{
+			board.move(Direction.RIGHT, this);
+		}if(userIn.compareTo("z") == 0)
+		{
+			board.move(Direction.DOWN_LEFT, this);
+		}if(userIn.compareTo("x") == 0)
+		{
+			board.move(Direction.DOWN, this);
+		}if(userIn.compareTo("c") == 0)
+		{
+			board.move(Direction.DOWN_RIGHT, this);
+		}
+	}
+	
+	public void run()
+	{
+		
+	}
+	
+	public void setDelay(long time)
+	{
+		
+	}
+	
+	private void delay()
+	{
+		
+	}
+
+	@Override
+	public boolean share(Boardable elem) {
+		
+		return false;
+	}
+
+	@Override
+	public boolean isVisible() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+/**
+ * 
+ * @author carterleising
+ * creates the board from the users input and adds the stylus to the board
+ */
+public class Driver {
+	
+	/**   scanner used to get the users inout  */
+	private static Scanner input;
+	/**
+	 * creates the board from the users input of width and height and adds the stylus to the board
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		input = new Scanner(System.in);
+		int height;
+		int width;
+		do
+		{
+			System.out.println("enter the board height");
+			height = input.nextInt();
+			System.out.println("enter the board width");
+			width = input.nextInt();
+		}while(height > 100 && height < 1 && width > 100 && width < 1);
+		
+		Board bd = new Board(height, width);
+		Stylus stylus = new Stylus(bd);
+		int index = 0;
+		bd.placeElement(stylus, 0, 0);
+		while(index == 0)
+		{
+			stylus.move();
+		}
+
+	}
+
+}

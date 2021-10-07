@@ -1,0 +1,23 @@
+
+public class TestDriver {
+
+	public static void main(String[] args) {
+		
+		int height;
+		int width;
+		for(int index = -5; index < 105; index++)
+		{
+			Board bd = new Board(index, index);
+		}
+		
+		/*Stylus stylus = new Stylus(bd);
+		int index = 0;
+		bd.placeElement(stylus, 0, 0);
+		while(index == 0)
+		{
+			stylus.move();
+		}
+	*/
+	}
+
+}

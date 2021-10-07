@@ -1,0 +1,85 @@
+/**
+ * TestDriver
+ * @author carterleising
+ * tests the game to make sure there is no bugs
+ */
+public class TestDriver {
+
+	/**
+	 * creates a board with height 10 and width 10
+	 * calls the test methods
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		testEdgesAndVisibility();
+		multipulStylus();
+	}
+	/**
+	 * tests all of the edges on the board to make sure it doesnt allow for the stylus to go out of bounds
+	 * @param board the board
+	 */
+	public static void testEdgesAndVisibility()
+	{
+		int height;
+		int width;
+		width = 10;
+		height = 10;
+		Board board = new Board(height, width);
+		
+		Stylus stylus = new Stylus(board);
+		board.placeElement(stylus, 0, 0);
+		
+		for(Direction temp: Direction.values() )
+		{
+			System.out.println("------------------ " + "testing " + temp.name());
+			for(int count = 0; count < 15; count++)
+			{
+				board.move(temp, stylus);
+				for(Direction temp1: Direction.values() )
+				{
+					System.out.println("------------------" + "testing temp1 " + temp1.name() + " and temp " + temp.name());
+					for(int count1 = 0; count1 < 15; count1++)
+					{
+						board.move(temp1, stylus);
+					}
+					
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
+	}
+	public static void multipulStylus()
+	{
+		int height;
+		int width;
+		width = 10;
+		height = 10;
+		Board board = new Board(height, width);
+		
+		System.out.println("--------------------------- Stylus testing");
+		Stylus stylus = new Stylus(board);
+		board.placeElement(stylus, 0, 0);
+		Stylus stylus1 = new Stylus(board);
+		
+		board.placeElement(stylus1, 10, 10);
+		board.placeElement(stylus1, -5, -5);
+		
+		board.placeElement(stylus1, 9, 9);
+		
+		for(Direction temp: Direction.values() )
+		{
+			System.out.println("------------------ " + "testing 3" + temp.name());
+			for(int count = 0; count < 3; count++)
+			{
+				System.out.println("------------------ " + "testing first stylus movement");
+				board.move(temp, stylus);
+				System.out.println("------------------ " + "testing second");
+				board.move(temp, stylus1);
+			}
+		}
+	}
+	
+
+}

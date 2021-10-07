@@ -1,0 +1,14 @@
+/**
+ * 
+ * @author carterleising
+ * an interface of boardable.
+ * stylus implements this
+ */
+public interface Boardable {
+
+	/**
+	 * 
+	 * @return returns the visibility of the boarable object
+	 */
+	public boolean isVisible();
+}

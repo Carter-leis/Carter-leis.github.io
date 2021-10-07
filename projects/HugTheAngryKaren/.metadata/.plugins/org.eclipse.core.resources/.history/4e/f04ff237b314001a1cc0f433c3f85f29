@@ -1,0 +1,13 @@
+/**
+ * 
+ * @author carterleising
+ *
+ */
+public interface Boardable {
+
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isVisible();
+}

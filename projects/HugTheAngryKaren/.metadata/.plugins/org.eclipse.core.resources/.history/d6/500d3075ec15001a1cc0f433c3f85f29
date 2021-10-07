@@ -1,0 +1,15 @@
+
+public class Jarvis extends Mobile{
+
+	public Jarvis(Board board) {
+		super(board);
+		
+	}
+
+	@Override
+	public boolean share(Boardable elem) {
+		
+		return false;
+	}
+
+}

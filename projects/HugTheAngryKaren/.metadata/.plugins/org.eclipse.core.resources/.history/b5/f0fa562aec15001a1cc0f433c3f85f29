@@ -1,0 +1,15 @@
+
+public class Player extends Mobile{
+
+	public Player(Board board) {
+		super(board);
+		
+	}
+
+	@Override
+	public boolean share(Boardable elem) {
+		
+		return false;
+	}
+
+}

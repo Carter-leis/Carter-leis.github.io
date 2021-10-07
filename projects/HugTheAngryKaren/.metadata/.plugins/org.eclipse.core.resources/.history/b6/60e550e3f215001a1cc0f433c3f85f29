@@ -1,0 +1,23 @@
+
+public class HomeworkTrap implements Boardable{
+
+	private Board board;
+	
+	public HomeworkTrap(Board board)
+	{
+		
+	}
+	
+	@Override
+	public boolean isVisible() {
+		
+		return false;
+	}
+
+	@Override
+	public boolean share(Boardable elem) {
+		
+		return false;
+	}
+
+}

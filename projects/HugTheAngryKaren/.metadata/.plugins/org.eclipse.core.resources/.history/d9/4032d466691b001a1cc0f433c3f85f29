@@ -1,0 +1,26 @@
+
+public class HomeworkTrap implements Boardable{
+
+	private Board board;
+	
+	public HomeworkTrap(Board board)
+	{
+		this.board = board;
+	}
+	
+	@Override
+	public boolean isVisible() {
+		
+		return false;
+	}
+
+	@Override
+	public boolean share(Boardable elem) {
+		if(elem instanceof Player)
+		{
+			return true;
+		}
+		return false;
+	}
+
+}

@@ -1,0 +1,27 @@
+
+public abstract class Mobile implements Boardable, Runnable {
+	
+	protected Board board;
+	
+	public Mobile(Board board)
+	{
+		this.board = board;
+	}
+	
+	protected void move()
+	{
+		
+	}
+	@Override
+	public void run() {
+		
+
+	}
+
+	@Override
+	public boolean isVisible() {
+		
+		return false;
+	}
+
+}

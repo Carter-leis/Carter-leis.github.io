@@ -1,0 +1,16 @@
+
+public class HomeworkTrap implements Boardable{
+
+	@Override
+	public boolean isVisible() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean share(Boardable elem) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}
