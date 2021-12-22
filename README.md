@@ -1,4 +1,4 @@
-#Personal website
+# Personal website
 
 ## Overview
   This project was to create a website that would allow for me to use in interviews for potential jobs and background of who I am. There are four different pages that this projects include. Each of them contribute differently to show who I am and what I have succesfully completed. Multiple of these pages have links that will allow for viewers to get more information without crowding the individual pages. To create this I used the Foundation framework to organize each of the individual pages in a organized viewable format.
